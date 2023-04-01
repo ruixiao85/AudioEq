@@ -3,6 +3,7 @@ from collections import OrderedDict
 
 def parse_args(use:str="equalizer"):
   import argparse
+  from datetime import datetime
   parser = argparse.ArgumentParser(f"Generate eq profiles for {use}.")
   parser.add_argument("-f", "--fr", default=[], type=str, help="adjust eq from which earphone(s).", action='append')
   parser.add_argument("-t", "--to", default=[], type=str, help="adjust eq to which earphone(s). Default to all available earphones.", action='append')
@@ -11,6 +12,7 @@ def parse_args(use:str="equalizer"):
   parser.add_argument("-i", "--idir", default="db", type=str, help="database root directory path")
   parser.add_argument("-e", "--fext", default=".csv", type=str, help="eq raw data file extension")
   parser.add_argument("-u", "--use", default=use, type=str, help="detailed use case of the eq adjustments.")
+  parser.add_argument("-o", "--out", default="_".join(["out", use, datetime.now().strftime("%y%m%dT%H%M")]), type=str, help="detailed use case of the eq adjustments.")
   args=parser.parse_args()
   if not args.fr: sys.exit("from earphone(s) required! e.g., -f \"AKG K701\"")
   # args.fr=["AKG K701"] # use a default
