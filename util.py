@@ -1,12 +1,46 @@
 import os
 from collections import OrderedDict
 
+def parse_args(use:str="equalizer"):
+  import argparse
+  parser = argparse.ArgumentParser(f"Generate eq profiles for {use}.")
+  parser.add_argument("-f", "--fr", default=[], type=str, help="adjust eq from which earphone(s).", action='append')
+  parser.add_argument("-t", "--to", default=[], type=str, help="adjust eq to which earphone(s). Default to all available earphones.", action='append')
+  parser.add_argument("-r", "--ratio", default=[], type=int, help="degree of eq adjustments, ratio: 0 - 9. 9=100% adj", action='append')
+  parser.add_argument("-l", "--limit", default=[], type=int, help="degree of eq adjustments, limit: 0 - 5. 4=2^4= +/-16db", action='append')
+  parser.add_argument("-i", "--idir", default="db", type=str, help="database root directory path")
+  parser.add_argument("-e", "--fext", default=".csv", type=str, help="eq raw data file extension")
+  parser.add_argument("-u", "--use", default=use, type=str, help="detailed use case of the eq adjustments.")
+  args=parser.parse_args()
+  if not args.fr: sys.exit("from earphone(s) required! e.g., -f \"AKG K701\"")
+  # args.fr=["AKG K701"] # use a default
+  if not args.ratio: args.ratio=[9]
+  if not args.limit: args.limit=[4]
+  print(args)
+  return args
+
+def map_subfolder(root, ext):
+  fmap={}
+  for sub in os.listdir(root):
+    if os.path.isdir(os.path.join(root, sub)):
+      # print(sub)
+      lst=[f.replace(ext,"") for f in os.listdir(os.path.join(root, sub)) if f.endswith(ext)]
+      fmap[sub]=lst
+  return fmap
+
 def short_name(file: str)-> str:
   res=file
-  for w in ["-", " ", "AudioTechnica"]:
+  for w in ["-", " "]:
     res=res.replace(w, "")
-  for f,t in [("Sennheiser", "Senn"), ("Beyerdynamic", "Beyer"), ("DanClarkAudio", "DanClark"),
-    ("Bang&Olufsen", "BnO"), ("AnkerSoundcore", "Anker")]:
+  for f,t in [ ("AnkerSoundcore", "Akr"), ("AudioTechnica", ""), ("Audeze", "Adz"),
+    ("Beyerdynamic", "Byr"),
+    ("Sennheiser", "Sen"), ("Bowers&Wilkins", "B&W"), ("Bang&Olufsen", "B&O"),
+    ("CampfireAudio", "Campf"), ("DanClarkAudio", "Dan"),
+    ("Edition", "Ed"), ("Etymotic", "Ety"),
+    ("HIFIMAN", "Hfm"), ("Moondrop", "Mdp"),
+    ("Shure", "Shu"), ("Tin HiFi", "Tin"),
+    ("Vision Ears", "Vse"), ("Ultrasone", "Uts"),
+  ]:
     res=res.replace(f, t)
   return res
 
