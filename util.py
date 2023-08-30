@@ -1,4 +1,4 @@
-import os
+import os, sys
 from collections import OrderedDict
 
 def parse_args(use:str="equalizer"):
@@ -12,12 +12,13 @@ def parse_args(use:str="equalizer"):
   parser.add_argument("-i", "--idir", default="db", type=str, help="database root directory path")
   parser.add_argument("-e", "--fext", default=".csv", type=str, help="eq raw data file extension")
   parser.add_argument("-u", "--use", default=use, type=str, help="detailed use case of the eq adjustments.")
-  parser.add_argument("-o", "--out", default="_".join(["out", use, datetime.now().strftime("%y%m%dT%H%M")]), type=str, help="detailed use case of the eq adjustments.")
+  parser.add_argument("-o", "--out", default="_".join([use, datetime.now().strftime("%y%m%dT%H%M")]), type=str, help="detailed use case of the eq adjustments.")
   args=parser.parse_args()
   if not args.fr: sys.exit("from earphone(s) required! e.g., -f \"AKG K701\"")
   # args.fr=["AKG K701"] # use a default
   if not args.ratio: args.ratio=[9]
   if not args.limit: args.limit=[4]
+  if not args.out.startswith("out/"): args.out=os.path.join("out", args.out) # force nest under out/
   print(args)
   return args
 
