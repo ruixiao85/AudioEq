@@ -35,12 +35,14 @@ def short_name(file: str)-> str:
   res=file
   for w in ["-", " "]:
     res=res.replace(w, "")
-  for f,t in [ ("AnkerSoundcore", "Akr"), ("AudioTechnica", ""), ("Audeze", "Adz"),
+  for f,t in [ ("AnkerSoundcore", "Akr"), ("AudioTechnica", ""),
+    ("AudioFly", "Af"), ("AudioQuest", "Aq"),
+    ("AustrianAudio", "Aus"), ("Audeze", "Adz"),
     ("Beyerdynamic", "Byr"),
     ("Sennheiser", "Sen"), ("Bowers&Wilkins", "B&W"), ("Bang&Olufsen", "B&O"),
     ("CampfireAudio", "Campf"), ("DanClarkAudio", "Dan"),
     ("Edition", "Ed"), ("Etymotic", "Ety"),
-    ("HIFIMAN", "Hfm"), ("Moondrop", "Mdp"),
+    ("HIFIMAN", "Hfm"), ("Moondrop", "Mdp"), ("Master&Dynamic", "MasDyn"),
     ("Shure", "Shu"), ("Tin HiFi", "Tin"),
     ("Vision Ears", "Vse"), ("Ultrasone", "Uts"),
   ]:

@@ -8,11 +8,13 @@ python3 foobar31geq.py \
   -r 9 -l 4
 
 python3 wavelet.py -f "Sennheiser HD 800" -o "wavelet_SnHD800"
-python3 wavelet.py -f "Sennheiser IE 900 RX" -o "wavelet_SnIE900RX"
 python3 wavelet.py -f "Anker Soundcore Space Q45" -o "wavelet_AkrQ45"
 python3 wavelet.py -f "Sennheiser IE 900" -o "wavelet_SnIE900"
+python3 wavelet.py -f "Sennheiser IE 900 RX" -o "wavelet_SnIE900RX"
+python3 wavelet.py -f "Meze 12 Classics" -o "wavelet_Mz12C"
 python3 wavelet.py -f "Audio-Technica ATH-W5000 2013" -o "wavelet_ATHW5000n"
 python3 wavelet.py -f "Audio-Technica ATH-W5000" -o "wavelet_ATHW5000"
+python3 wavelet.py -f "Etymotic ER2XR" -o "wavelet_EtyER2XR"
 
 python3 wavelet.py \
   -f "Sennheiser HD 800" \
