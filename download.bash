@@ -11,7 +11,7 @@ types=(earbud in-ear over-ear)
 for s in "${sources[@]}"; do
   for t in "${types[@]}"; do
     echo "${s}/data/${t}"
-    dest="../db/${s}/";
+    dest="../db/${s}/${t}/";
     mkdir -p ${dest}
     find "measurements/${s}/data/${t}" -maxdepth 2 -type f -name "*.csv" -exec mv -t ${dest} {} +
   done

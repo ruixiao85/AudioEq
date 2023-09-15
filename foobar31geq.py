@@ -5,7 +5,6 @@ args=parse_args("foobar31geq")
 fmap=map_subfolder(args.idir, args.fext)
 print(fmap) # { 'oratory1990': ['AKG K701', ...], ... }
 if not fmap: sys.exit()
-os.makedirs(args.out, exist_ok=True)
 
 bands=[20,25,31.5,40,50,63,80,100,125,160,200,250,315,400,500,630,800,1000,
   1250,1600,2000,2500,3150,4000,5000,6300,8000,10000,12500,16000,20000] # 31 Graphic Equalizer
@@ -26,7 +25,8 @@ for p in args.fr: # headPhone to start from
           for ratio in args.ratio:
             for limit in args.limit:
               # print(f"ratio {ratio} limit {limit}")
-              with open(os.path.join(args.out, f"{_p}-{_v}~{ratio}{limit}{k[:2]}.xgeq"), "wb") as f:
+              # with open(os.path.join(args.out, f"{_p}-{_v}~{ratio}{limit}{k[:2]}.xgeq"), "wb") as f:
+              with open(os.path.join(args.out, f"{_v}~{ratio}{limit}{k[:2]}~{_p}.xgeq"), "wb") as f:
                 f.write(binascii.unhexlify(prehex))
                 adjs=[(b-a)*0.1*(1+ratio) for a,b in zip(fr1,fr2)]
                 mean=max(-2**limit,min(2**limit,sum(adjs)/len(adjs)))
