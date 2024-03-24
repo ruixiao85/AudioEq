@@ -4,7 +4,7 @@
 
 https://github.com/jaakkopasanen/AutoEq
 
-[Download Script](download.bash): only download the frequency response data from the repo mentioned above.
+[Download Script](download.py): only download the frequency response data from the repo mentioned above.
 
 ## Utility Scripts
 [Call Adjustment Script](call_adjust.bash)
