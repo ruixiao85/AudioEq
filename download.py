@@ -2,14 +2,14 @@ import os
 import shutil
 
 os.system("git clone --no-checkout --filter=tree:0 https://github.com/jaakkopasanen/AutoEq")
-os.system("cd AutoEq")
-os.system("git sparse-checkout set measurements")
-os.system("git checkout")
+os.system("cd AutoEq && git sparse-checkout set measurements")
+os.system("cd AutoEq && git checkout")
 
 
 # Define the sources and types
 sources = [
   'innerfidelity',
+  'kr0mka',
   'Kuulokenurkka',
   'oratory1990',
   'rtings',
